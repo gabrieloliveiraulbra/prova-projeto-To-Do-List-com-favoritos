@@ -16,7 +16,7 @@ Este é um projeto de lista de tarefas desenvolvido em **React + TypeScript + Vi
 1. Certifique-se de estar na pasta do projeto:
 
 ```bash
-cd projeto-To-Do-List
+cd prova-projeto-To-Do-List-com-favoritos
 ````
 
 2. Instale as dependências (somente na primeira vez que rodar):
