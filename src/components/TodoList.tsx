@@ -2,21 +2,24 @@ import React from "react";
 import { List, Typography } from "@mui/material";
 import TodoItem from "./TodoItem";
 import type { Task } from "../types";
+import { useTasks } from "../types";
 
 interface TodoListProps {
-  tasks: Task[];
-  toggleTask: (id: number) => void;
+  tasks?: Task[];
 }
 
-const TodoList: React.FC<TodoListProps> = ({ tasks, toggleTask }) => {
-  if (tasks.length === 0) {
+const TodoList: React.FC<TodoListProps> = ({ tasks: tasksProp }) => {
+  const { tasks: tasksFromContext } = useTasks();
+  const list = tasksProp ?? tasksFromContext;
+
+  if (!list || list.length === 0) {
     return <Typography color="text.secondary">Nenhuma tarefa ainda.</Typography>;
   }
 
   return (
     <List>
-      {tasks.map((task) => (
-        <TodoItem key={task.id} task={task} toggleTask={toggleTask} />
+      {list.map((task) => (
+        <TodoItem key={task.id} task={task} />
       ))}
     </List>
   );

@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
+import { useTasks } from "../types";
 
-interface TodoFormProps {
-  addTask: (text: string) => void;
-}
-
-const TodoForm: React.FC<TodoFormProps> = ({ addTask }) => {
+export default function TodoForm(): JSX.Element {
+  const { addTask } = useTasks();
   const [text, setText] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault();
     const value = text.trim();
     if (!value) return;
     addTask(value);
@@ -32,6 +30,4 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTask }) => {
       </Button>
     </Box>
   );
-};
-
-export default TodoForm;
+}
